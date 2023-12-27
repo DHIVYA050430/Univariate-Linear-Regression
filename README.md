@@ -18,21 +18,24 @@ To implement univariate Linear Regression to fit a straight line using least squ
 Developed by: DIVYA E
 RegisterNumber: 212223230050
 
-import pandas as pd
-from sklearn import linear_model
-df=pd.read_csv('cars.csv')
-x=df[['Weight','Volume']]
-y=df['CO2']
-regr=linear_model.LinearRegression()
-regr.fit(x,y)
-print("Coefficient:",regr.coef_)
-print("Intercept:",regr.intercept_)
-predictedCO2=regr.predict([[3300,1300]])
-print("Predicted CO2 for the corresponding weight and volume",predictedCO
-
-
-
-
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array(eval(input()))
+y=np.array(eval(input()))
+xmean = np.mean(x)
+ymean = np.mean(y)
+num, den = 0,0
+for i in range (len(x)):
+  num += (x[i] - xmean)*(y[i] - ymean)
+  den += (x[i] - xmean)**2
+m=num/den
+c=ymean - (m*xmean)
+print(m,c)
+y_pred = m*x+c
+print(y_pred)
+plt.scatter(x,y)
+plt.plot(x,y_pred, color = "orange")
+plt.show()
 
 ```
 ## Output
